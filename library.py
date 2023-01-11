@@ -11,6 +11,16 @@ class Network:
 	broadcast_host = "x.x.x.x"
 	max_host_count = 0
 	
+def ipToBinary(w,x,y,z):
+    mskBin = []
+    for msk in [w,x,y,z]:
+        listMsk = []
+        for i in range(3):
+            listMsk.append(msk%2)
+            msk = msk // 2
+        listMsk.reverse()
+        mskBin += listMsk
+    return mskBin
 
 def displayNetwork(network,id):
 	print("############# Réseau no %d ############# \n\
