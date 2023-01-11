@@ -14,7 +14,13 @@ def mainCha():
     mskBinary = l.ipToBinary(mskW,mskX,mskY,mskZ)
     if l.askTypeDiv() :
         somme = 32
+        nbHostMax = -2
         for nb in (mskBinary):
             somme -= nb
+        for i in range(somme):
+            nbHostMax += 2**i
+        nbHost = l.askHostNb(nbHostMax)
+        
+        
 
 ###################################################################
