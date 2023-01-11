@@ -15,7 +15,7 @@ def ipToBinary(w,x,y,z):
     mskBin = []
     for msk in [w,x,y,z]:
         listMsk = []
-        for i in range(3):
+        for i in range(8):
             listMsk.append(msk%2)
             msk = msk // 2
         listMsk.reverse()
@@ -41,11 +41,23 @@ def askIp():
 
 def askMask():
 	check = input("Donnez le masque du réseau à diviser :\n")
-	while not(R.fullmatch(validIpv4Regex,check)):
-		print("\nMasque invalide.")
-		check = input("Donnez un masque de réseau valide :\n")
-	w,x,y,z = check.split(".")
-	return(int(w),int(x),int(y),int(z))
+	valid = False
+	while not(valid):
+		while not(R.fullmatch(validIpv4Regex,check) and valid):
+			print("\nMasque invalide.")
+			check = input("Donnez un masque de réseau valide :\n")
+		i=0
+		w,x,y,z = check.split(".")
+		w,x,y,z = int(w),int(x),int(y),int(z)
+		binIp = ipToBinary(w,x,y,z)
+		valid = True
+		while i<32 and binIp[i]==1:
+			i=i+1
+		while i<32 and valid:
+			valid = valid and binIp[i]==0
+			i=i+1
+
+	return(w,x,y,z)
 
 def askTypeDiv():
 	check = input("Voulez-vous diviser par nombre d'hôte (1) ou par nombre de sous-réseaux (2) ?\n")
