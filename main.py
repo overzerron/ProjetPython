@@ -10,8 +10,3 @@ import library as l
 
 
 ###################################################################
-lo = 1
-def main():
-    print("coucou")
-    lo = 4
-    return True
