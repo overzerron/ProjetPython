@@ -8,8 +8,8 @@ import library as l
 ## Code par Cha :
             
 def mainCha():
-    ipW,ipX,ipY,ipZ = 192, 168, 1, 0 #l.askIp()
-    mskW,mskX,mskY,mskZ = 255, 255, 255, 192 #l.askMask()
+    ipW,ipX,ipY,ipZ = l.askIp()
+    mskW,mskX,mskY,mskZ = l.askMask()
     ipBinary = l.ipToBinary(ipW,ipX,ipY,ipZ)
     mskBinary = l.ipToBinary(mskW,mskX,mskY,mskZ)
     if l.askTypeDiv() :
