@@ -39,23 +39,32 @@ def askIp():
 	w,x,y,z = check.split(".")
 	return(int(w),int(x),int(y),int(z))
 
+def checkMaskValidity(binMask):
+	i=0
+	valid = True
+	while i<32 and binMask[i]==1:
+		i=i+1
+	while i<32 and valid:
+		valid = valid and binMask[i]==0
+		i=i+1
+	return valid
+	
+
 def askMask():
 	check = input("Donnez le masque du réseau à diviser :\n")
-	valid = False
-	while not(valid):
-		while not(R.fullmatch(validIpv4Regex,check) and valid):
-			print("\nMasque invalide.")
-			check = input("Donnez un masque de réseau valide :\n")
-		i=0
+	valid = R.fullmatch(validIpv4Regex,check)
+	if(valid):
 		w,x,y,z = check.split(".")
 		w,x,y,z = int(w),int(x),int(y),int(z)
-		binIp = ipToBinary(w,x,y,z)
-		valid = True
-		while i<32 and binIp[i]==1:
-			i=i+1
-		while i<32 and valid:
-			valid = valid and binIp[i]==0
-			i=i+1
+		valid = checkMaskValidity(ipToBinary(w,x,y,z))
+		
+	while not(valid):
+		print("\nMasque invalide.")
+		check = input("Donnez un masque de réseau valide :\n")
+		w,x,y,z = check.split(".")
+		w,x,y,z = int(w),int(x),int(y),int(z)
+		valid = checkMaskValidity(ipToBinary(w,x,y,z))
+		
 
 	return(w,x,y,z)
 
