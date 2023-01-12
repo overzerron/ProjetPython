@@ -85,7 +85,7 @@ def askHostNb(maxHostNb):
 def askNetNb(maxNetNb):
 	check = input("Combien de sous-réseaux souhaitez-vous ?\n")
 	while not(R.fullmatch(r"^\d+$",check) and int(check)>0 and int(check)<=maxNetNb):
-		print("\nCe nombre d'hôte n'est pas possible pour votre configuration réseau."%(maxNetNb))
-		check = input("Donnez un masque de réseau valide :\n")
+		print("\nCe nombre d'hôte n'est pas possible pour votre configuration réseau.")
+		check = input("Combien de sous-réseaux souhaitez-vous (de 1 à %d) ?\n"%(maxNetNb))
 	return(int(check))
 

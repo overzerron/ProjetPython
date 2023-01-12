@@ -12,13 +12,13 @@ def mainCha():
     mskW,mskX,mskY,mskZ = l.askMask()
     ipBinary = l.ipToBinary(ipW,ipX,ipY,ipZ)
     mskBinary = l.ipToBinary(mskW,mskX,mskY,mskZ)
+    somme = 32
+    nbAddressMax = 0
+    for nb in (mskBinary):
+        somme -= nb
+    nbAddressMax = 2**(somme+1)
+    nbNetMax = nbAddressMax / 4
     if l.askTypeDiv() :
-        somme = 32
-        nbAddressMax = 0
-        for nb in (mskBinary):
-            somme -= nb
-        nbAddressMax = 2**(somme+1)
-
         nbHost = l.askHostNb(nbAddressMax-2)
 
         i=0
@@ -26,6 +26,8 @@ def mainCha():
             i = i+1
         nbDiv = int(nbAddressMax / 2**i)
     else:
-        nbDiv = l.askNetNb()
+        nbDiv = l.askNetNb(nbNetMax)
 
 ###################################################################
+
+mainCha()
