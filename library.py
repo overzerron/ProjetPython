@@ -10,7 +10,7 @@ class Network:
 	last_host = "x.x.x.x"
 	broadcast_host = "x.x.x.x"
 	max_host_count = 0
-	
+
 def ipToBinary(w,x,y,z):
     mskBin = []
     for msk in [w,x,y,z]:
@@ -44,11 +44,12 @@ def checkMaskValidity(binMask):
 	valid = True
 	while i<32 and binMask[i]==1:
 		i=i+1
+	valid = i!=32
 	while i<32 and valid:
 		valid = valid and binMask[i]==0
 		i=i+1
 	return valid
-	
+
 
 def askMask():
 	check = input("Donnez le masque du réseau à diviser :\n")
@@ -57,14 +58,14 @@ def askMask():
 		w,x,y,z = check.split(".")
 		w,x,y,z = int(w),int(x),int(y),int(z)
 		valid = checkMaskValidity(ipToBinary(w,x,y,z))
-		
+
 	while not(valid):
 		print("\nMasque invalide.")
 		check = input("Donnez un masque de réseau valide :\n")
 		w,x,y,z = check.split(".")
 		w,x,y,z = int(w),int(x),int(y),int(z)
 		valid = checkMaskValidity(ipToBinary(w,x,y,z))
-		
+
 
 	return(w,x,y,z)
 
@@ -88,4 +89,3 @@ def askNetNb(maxNetNb):
 		print("\nCe nombre d'hôte n'est pas possible pour votre configuration réseau.")
 		check = input("Combien de sous-réseaux souhaitez-vous (de 1 à %d) ?\n"%(maxNetNb))
 	return(int(check))
-
