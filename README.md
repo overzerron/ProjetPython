@@ -1,6 +1,6 @@
 # Projet Python de division de réseau par masques
 
-Le but de ce projet est de recréer le diviseur de réseaux par bits de [ce site](https://www.sebastienadam.be/ipcalculator/) développé par Sebasten ADAM.
+Le but de ce projet est de recréer le diviseur de réseaux par bits de [ce site](https://www.sebastienadam.be/ipcalculator/) développé par Sebastien ADAM.
 
 Dans ce projet, on se concentrera principalement sur la partie calculatoire de la division de réseaux et on expliquera dans les grandes lignes la logique des fonctions utilitaires.
 
