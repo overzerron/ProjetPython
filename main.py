@@ -6,7 +6,7 @@ import library as l
 ###################################################################
 ##############################  Cha  ##############################
 ## Code par Cha :
-            
+
 def mainCha():
     ipW,ipX,ipY,ipZ = l.askIp()
     mskW,mskX,mskY,mskZ = l.askMask()
@@ -27,6 +27,22 @@ def mainCha():
         nbDiv = int(nbAddressMax / 2**i)
     else:
         nbDiv = l.askNetNb(nbNetMax)
+
+    ### Division du réseau ###
+    firstNullBitRank = getFirstNullBitRank(mskBinary)
+    divNumReal = 1
+    startMskIp = firstNullBitRank
+    while divNumReal < nbDiv:
+        divNumReal *= 2
+        mskBinary[startMskIp] = 1
+        startMskIp += 1
+    resultMsk = l.binaryToIp(mskBinary)
+
+    ipList = []
+    for i in range(firstNullBitRank, startMskIp+1):
+        tmpIp = ipBinary
+        ipList.append(l.binaryToIp(tmpIp))
+        tmpIp[i]
 
 ###################################################################
 

@@ -98,3 +98,10 @@ def askNetNb(maxNetNb):
 		print("\nCe nombre d'hôte n'est pas possible pour votre configuration réseau.")
 		check = input("Combien de sous-réseaux souhaitez-vous (de 1 à %d) ?\n"%(maxNetNb))
 	return(int(check))
+
+def getFirstNullBitRank(mskBinary):
+		i=0
+		valid = True
+		while i<32 and binMask[i]==1:
+			i=i+1
+		return i
