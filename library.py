@@ -22,6 +22,15 @@ def ipToBinary(w,x,y,z):
         mskBin += listMsk
     return mskBin
 
+def binaryToIp(ipBin):
+	listIp = []
+	for j in range(4):
+		cmp = 0
+		for i in range(8):
+			cmp += (ipBin[i+8*j]*2**(7-i))
+		listIp.append(cmp)
+	return listIp
+
 def displayNetwork(network,id):
 	print("############# Réseau no %d ############# \n\
 Adresse sous-réseau :\t\t%s\n\
