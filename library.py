@@ -1,4 +1,3 @@
-# Request ip adress, mask, div nb host ou div nb res, nb host, nb net
 import re as R
 
 validIpv4Regex = "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$"
@@ -6,9 +5,6 @@ validIpv4Regex = "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|
 class Network:
 	address = "x.x.x.x"
 	mask = "x.x.x.x"
-	first_host = "x.x.x.x"
-	last_host = "x.x.x.x"
-	broadcast_host = "x.x.x.x"
 	max_host_count = 0
 
 def ipToBinary(w,x,y,z):
@@ -22,14 +18,20 @@ def ipToBinary(w,x,y,z):
         mskBin += listMsk
     return mskBin
 
+def binaryToIp(ipBin):
+	listIp = []
+	for j in range(4):
+		cmp = 0
+		for i in range(8):
+			cmp += (ipBin[i+8*j]*2**(7-i))
+		listIp.append(cmp)
+	return listIp[0], listIp[1], listIp[2], listIp[3]
+
 def displayNetwork(network,id):
 	print("############# Réseau no %d ############# \n\
 Adresse sous-réseau :\t\t%s\n\
 Masque du sous-réseau :\t\t%s\n\
-Adresse du premier hôte :\t%s\n\
-Adresse du dernier hôte :\t%s\n\
-Adresse de diffusion :\t\t%s\n\
-Nombre d'hote disponible :\t%d\n\n"%(id,network.address,network.mask,network.first_host,network.last_host,network.broadcast_host,network.max_host_count))
+Nombre d'hote disponible :\t%d\n\n"%(id,network.address,network.mask,network.max_host_count))
 
 def askIp():
 	check = input("Donnez l'adresse ip du réseau à diviser :\n")
@@ -89,3 +91,10 @@ def askNetNb(maxNetNb):
 		print("\nCe nombre d'hôte n'est pas possible pour votre configuration réseau.")
 		check = input("Combien de sous-réseaux souhaitez-vous (de 1 à %d) ?\n"%(maxNetNb))
 	return(int(check))
+
+def getFirstNullBitRank(mskBinary):
+		i=0
+		valid = True
+		while i<32 and mskBinary[i]==1:
+			i=i+1
+		return i
